@@ -1,0 +1,62 @@
+{
+  //"Urls": "http://test-dev.neurul.net:80;https://nc-test-dev.neurul.net:443",
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ReverseProxy": {
+    "Routes": {
+      "minimumroute": {
+        "ClusterId": "minimumcluster",
+        "Match": {
+          "Path": "{**catch-all}"
+        }
+      },
+      "avatarroute": {
+        "ClusterId": "avatarcluster",
+        "Match": {
+          "Hosts": [ "test-dev.neurul.net" ]
+        }
+      },
+      "ncroute": {
+        "ClusterId": "nccluster",
+        "Match": {
+          "Hosts": [ "nc-test-dev.neurul.net" ]
+        }
+      }
+    },
+    "Clusters": {
+      "minimumcluster": {
+        "Destinations": {
+          "httpbin.org": {
+            "Address": "https://www.google.com"
+          }
+        }
+      },
+      "avatarcluster": {
+        "Destinations": {
+          "httpbin.org": {
+            "Address": "http://sample.eb.neurul.net"
+          }
+        }
+      },
+      "nccluster": {
+        "Destinations": {
+          "httpbin.org": {
+            "Address": "https://d23-sample.eb.neurul.net"
+          }
+        },
+        "HttpClient": { // Configuration of HttpClient instance used to contact destinations
+          "SSLProtocols": "Tls12",
+          "DangerousAcceptAnyServerCertificate": true,
+          "MaxConnectionsPerServer": 1024,
+          "EnableMultipleHttp2Connections": true,
+          "RequestHeaderEncoding": "Latin1" // How to interpret non ASCII characters in header values
+        }
+      }
+    }
+  }
+}

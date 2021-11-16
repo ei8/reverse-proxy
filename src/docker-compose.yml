@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  reverseproxy.api:
+    image: ei8works/reverseproxy.api:0.1.0
+    build:
+      context: .
+      dockerfile: main/Dockerfile
