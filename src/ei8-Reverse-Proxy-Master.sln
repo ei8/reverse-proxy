@@ -7,6 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReverseProxy", "main\Revers
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7E9AEE00-5520-4EF9-B941-E2A6B5F74329}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LettuceEncrypt", "..\..\LettuceEncrypt\src\LettuceEncrypt\LettuceEncrypt.csproj", "{D5FD76CE-10F3-4D1D-9227-2C64971D477B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{4F110590-9F49-43DD-9442-BC59F3333D7C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "McMaster.AspNetCore.Kestrel.Certificates", "..\..\LettuceEncrypt\src\Kestrel.Certificates\McMaster.AspNetCore.Kestrel.Certificates.csproj", "{04A6FB02-D35B-4D6C-9A3E-B072A6951E82}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Certes", "..\..\certes\src\Certes\Certes.csproj", "{A1240D87-1A80-460D-B2F6-5C615F427E3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +29,26 @@ Global
 		{7E9AEE00-5520-4EF9-B941-E2A6B5F74329}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E9AEE00-5520-4EF9-B941-E2A6B5F74329}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E9AEE00-5520-4EF9-B941-E2A6B5F74329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5FD76CE-10F3-4D1D-9227-2C64971D477B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5FD76CE-10F3-4D1D-9227-2C64971D477B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5FD76CE-10F3-4D1D-9227-2C64971D477B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5FD76CE-10F3-4D1D-9227-2C64971D477B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A6FB02-D35B-4D6C-9A3E-B072A6951E82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A6FB02-D35B-4D6C-9A3E-B072A6951E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A6FB02-D35B-4D6C-9A3E-B072A6951E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A6FB02-D35B-4D6C-9A3E-B072A6951E82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1240D87-1A80-460D-B2F6-5C615F427E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1240D87-1A80-460D-B2F6-5C615F427E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1240D87-1A80-460D-B2F6-5C615F427E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1240D87-1A80-460D-B2F6-5C615F427E3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D5FD76CE-10F3-4D1D-9227-2C64971D477B} = {4F110590-9F49-43DD-9442-BC59F3333D7C}
+		{04A6FB02-D35B-4D6C-9A3E-B072A6951E82} = {4F110590-9F49-43DD-9442-BC59F3333D7C}
+		{A1240D87-1A80-460D-B2F6-5C615F427E3B} = {4F110590-9F49-43DD-9442-BC59F3333D7C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0FA680D8-C55B-439C-9E8F-EDCBA9FE3798}

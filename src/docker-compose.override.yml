@@ -4,7 +4,7 @@ services:
   reverseproxy.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://neurul.net:443;http://neurul.net:80
+      - ASPNETCORE_URLS=https://+;http://+
     ports:
       - "80:80"
       - "443:443"
@@ -12,3 +12,5 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
       - ./customsettings.json:/app/appsettings.json
+      - ./letsencrypt-stg-root-x1.pem:/app/staging1.pem
+      - ./letsencrypt-stg-root-x2.pem:/app/staging2.pem

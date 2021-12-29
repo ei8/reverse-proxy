@@ -1,5 +1,4 @@
 {
-  //"Urls": "http://test-dev.neurul.net:80;https://nc-test-dev.neurul.net:443",
   "Logging": {
     "LogLevel": {
       "Default": "Information",
@@ -7,54 +6,92 @@
     }
   },
   "AllowedHosts": "*",
+  "LettuceEncrypt": {
+    // Set this to automatically accept the terms of service of your certificate authority.
+    // If you don't set this in config, you will need to press "y" whenever the application starts
+    "AcceptTermsOfService": true,
+
+    // You must at least one domain name
+    "DomainNames": [ "neurul.net", "login.neurul.net" ],
+
+    // You must specify an email address to register with the certificate authority
+    "EmailAddress": "elmer.bool@ei8.works",
+    
+    "UseStagingServer":  true
+  },
   "ReverseProxy": {
     "Routes": {
-      "minimumroute": {
-        "ClusterId": "minimumcluster",
-        "Match": {
-          "Path": "{**catch-all}"
-        }
-      },
       "avatarroute": {
         "ClusterId": "avatarcluster",
         "Match": {
-          "Hosts": [ "test-dev.neurul.net" ]
-        }
+          "Path": "/test/{**remainder}"
+        },
+        "Transforms": [
+          { "PathRemovePrefix": "/test" }
+        ]
       },
       "ncroute": {
         "ClusterId": "nccluster",
         "Match": {
-          "Hosts": [ "nc-test-dev.neurul.net" ]
+          "Path": "/test/nc/{**remainder}"
+        },
+        "Transforms": [
+          { "PathRemovePrefix": "/test/nc" },
+          { "RequestHeaderOriginalHost": "true" }
+        ]
+      },
+      // recognize prod avatar
+      "prodsampleroute": {
+        // forward to prod cluster
+        "ClusterId": "prodcluster",
+        "Match": {
+          "Path": "/sample/{**remainder}"
+        },
+        "Transforms": [
+          {
+            // only send the host and proto if necessary
+            "Host": "Set",
+            // Currently unnecessary since this is already set by ngrok
+            // "Proto": "Set",
+            "X-Forwarded": "Off"
+          }
+        ]
+      },
+      "idproute": {
+        "ClusterId": "idpcluster",
+        "Match": {
+          "Hosts": [ "login.neurul.net" ]
         }
       }
     },
     "Clusters": {
-      "minimumcluster": {
-        "Destinations": {
-          "httpbin.org": {
-            "Address": "https://www.google.com"
-          }
-        }
-      },
       "avatarcluster": {
         "Destinations": {
-          "httpbin.org": {
-            "Address": "http://sample.eb.neurul.net"
+          "testavatar": {
+            "Address": "http://192.168.1.110:64101"
           }
         }
       },
       "nccluster": {
         "Destinations": {
-          "httpbin.org": {
-            "Address": "https://d23-sample.eb.neurul.net"
+          "testnc": {
+            "Address": "http://192.168.1.110:64103"
           }
-        },
-        "HttpClient": { // Configuration of HttpClient instance used to contact destinations
-          "SSLProtocols": "Tls12",
-          "DangerousAcceptAnyServerCertificate": true,
-          "MaxConnectionsPerServer": 1024,
-          "EnableMultipleHttp2Connections": true,
-          "RequestHeaderEncoding": "Latin1" // How to interpret non ASCII characters in header values
+        }
+      },
+      "prodcluster": {
+        "Destinations": {
+          "prodavatar": {
+            // use traefik in destination to forward requests to avatars
+            "Address": "https://24ac-49-199-218-204.au.ngrok.io"
+          }
+        }
+      },
+      "idpcluster": {
+        "Destinations": {
+          "idp": {
+            "Address": "http://192.168.1.110:64102"
+          }
         }
       }
     }
