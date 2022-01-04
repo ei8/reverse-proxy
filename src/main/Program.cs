@@ -1,7 +1,7 @@
 using LettuceEncrypt;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using ReverseProxy;
+using ei8.ReverseProxy;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddLettuceEncrypt();

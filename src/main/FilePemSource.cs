@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ReverseProxy
+namespace ei8.ReverseProxy
 {
     public class FilePemSource : ICertificateSource
     {

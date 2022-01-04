@@ -7,6 +7,7 @@
     <UserSecretsId>c89a4f9a-ea18-4ff0-ac02-c0225454c045</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <AssemblyName>ei8.ReverseProxy</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,13 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ei8.LettuceEncrypt" Version="1.1.2-beta.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Yarp.ReverseProxy" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\certes\src\Certes\Certes.csproj" />
-    <ProjectReference Include="..\..\..\LettuceEncrypt\src\LettuceEncrypt\LettuceEncrypt.csproj" />
   </ItemGroup>
 
 </Project>
